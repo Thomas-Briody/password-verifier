@@ -17,4 +17,8 @@ describe('A suite', function() {
     const nullPassword = null
     expect(() => passwordVerifier(nullPassword)).toThrowError('null!')
   })
+  it('fails if no lowercase characters', function() {
+    const noLowercase = 'HELLO'
+    expect(() => passwordVerifier(noLowercase)).toThrowError('need a lowercase character!')
+  })
 })
