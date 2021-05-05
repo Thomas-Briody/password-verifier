@@ -3,6 +3,7 @@
 const passwordVerifier = require('../../src/index')
 
 // import passwordVerifier from '../../src/index'
+//* anonymous functions being used to ensure function is called at the right time
 
 describe('Password Checks', function() {
   it('fails if less than 8 characters', function() {
@@ -25,13 +26,17 @@ describe('Password Checks', function() {
     const noNumbers = 'Hello!long'
     expect(() => passwordVerifier(noNumbers)).toThrowError('need a number!')
   })
-  it('succeeds if all parameters are met', function() {
+  it('succeeds if all conditions are met', function() {
     const result =  passwordVerifier('Passw0rd1')
     expect(result).toBe(true)
   })
+  it('succeeds if 3 conditions are met', function() {
+    const result =  passwordVerifier('Aa1')
+    expect(result).toBe(true)
+  })
+  it('fails if 3 conditions are met but no lowercase', function() {
+    const testFunc = () => passwordVerifier('LONGPASS1')
+    expect(testFunc).toThrowError('requires a lowercase character!')
+  })
 })
 
-// it('succeeds if longer than 8 characters', function() {
-//   const longEnough = 'longenough'
-//   expect(() => passwordVerifier(longEnough)).toThrow('perfect!')
-// })
