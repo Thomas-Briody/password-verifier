@@ -25,4 +25,8 @@ describe('A suite', function() {
     const noUppercase = 'hello'
     expect(() => passwordVerifier(noUppercase)).toThrowError('need an uppercase character!')
   })
+  it('fails if no number', function() {
+    const noNumbers = 'hello'
+    expect(() => passwordVerifier(noNumbers)).toThrowError('need a number!')
+  })
 })
