@@ -13,5 +13,8 @@ describe('A suite', function() {
     const longEnough = 'longenough'
     expect(() => passwordVerifier(longEnough)).toThrow('perfect!')
   })
-
+  it('fails if null', function() {
+    const nullPassword = null
+    expect(() => passwordVerifier(nullPassword)).toThrowError('null!')
+  })
 })
