@@ -63,6 +63,7 @@ function passwordVerifier(str){
     throw new Error('need a number!')
   }
 
+  return true 
 
 } 
 

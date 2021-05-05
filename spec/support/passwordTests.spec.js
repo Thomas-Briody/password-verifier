@@ -26,8 +26,8 @@ describe('Password Checks', function() {
     expect(() => passwordVerifier(noNumbers)).toThrowError('need a number!')
   })
   it('succeeds if all parameters are met', function() {
-    const usablePassword = 'Passw0rd1'
-    expect(() => passwordVerifier(usablePassword)).toBe(true)
+    const result =  passwordVerifier('Passw0rd1')
+    expect(result).toBe(true)
   })
 })
 
