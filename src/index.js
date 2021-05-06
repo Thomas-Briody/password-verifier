@@ -1,10 +1,8 @@
 
-
-
-
-
-
 function passwordVerifier(str){
+
+
+  //* Functions all return true if condition is NOT met
 
   function isNull(str){
     if (str === null || str === '') {
@@ -27,47 +25,39 @@ function passwordVerifier(str){
   function uppercaseCheck(str) {
     if ((/[A-Z]/.test(str)) === false) {
       return true
-    } 
+    }
   } 
 
   function numberCheck(str) {
     if ((/[0-9]/.test(str)) === false) {
       return true
-    } 
+    }
   } 
-
-
-
+ 
   const pwIsNull = isNull(str)
   if (pwIsNull) {
-    throw new Error('null!')
-  } 
+    throw new Error('Password cannot be blank')
+  }  
+  
+  const pwHasNoLowerCase = lowercaseCheck(str)
+  if (pwHasNoLowerCase) {
+    throw new Error('Password requires a lowercase character')
+  }
+
+  //* If the code reaches below, 2 conditions are correct (password is not null and contains lowercase character)
 
   const pwIsTooShort = isTooShort(str)
-  if (pwIsTooShort) {
-    throw new Error('too short')
-  }
-
-  const pwLowercaseCheck = lowercaseCheck(str)
-  if (pwLowercaseCheck) {
-    throw new Error('need a lowercase character!')
-  }
-
-  const pwUppercaseCheck = uppercaseCheck(str) 
-  if (pwUppercaseCheck) {
-    throw new Error('need an uppercase character!')
-  }
-  
-  const pwNumberCheck = numberCheck(str)
-  if (pwNumberCheck) {
-    throw new Error('need a number!')
-  }
-
-  return true 
-
-} 
+  const pwHasNoUpperCase = uppercaseCheck(str) 
+  const pwHasNoNumber = numberCheck(str)
 
 
+  if (!pwHasNoUpperCase || !pwIsTooShort || !pwHasNoNumber ) {
+    return true
+  } else throw new Error('Insufficient')
+
+}
+
+console.log('FUNCTION CHECK>', passwordVerifier('aaAa'))
 
 module.exports = passwordVerifier
 
