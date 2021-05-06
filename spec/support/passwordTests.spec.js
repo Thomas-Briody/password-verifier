@@ -3,7 +3,7 @@
 const passwordVerifier = require('../../src/index')
 
 describe('Password Checks', function() {
-  it('Fails if less than 8 characters', function() {
+  it('Fails if less than 9 characters', function() {
     expect(() => passwordVerifier('short')).toThrowError('Insufficient')
   })
   it('Fails if null', function() {
